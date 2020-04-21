@@ -1,10 +1,16 @@
 const Router = require('koa-router');
 const {
     actionIndex,
-    actionView,
     actionCreate,
-    actionUpdate,
     actionDelete,
+    actionUpdate,
+    actionView,
+
+    proxyQueryIndexData,
+    proxyCreateItemData,
+    proxyDeleteItemData,
+    proxyUpdateItemData,
+    proxyQueryItemData,
 } = require('../controllers/BooksController');
 
 
@@ -13,44 +19,12 @@ const router = new Router();
 
 
 
-// page-list
-router.get('/(index|index.html)?', async (ctx, next) => {
-    // todo: get list data from php server
-    await ctx.render('books/index', {
-        title: '首页',
-        user: 'John'
-    });
-});
-
-
-
-// page-create-item
-router.get('/create(.html)?', async (ctx, next) => {
-    await ctx.render('books/create', {
-        title: '新建',
-        user: 'John'
-    });
-});
-
-
-
-// page-view-item
-router.get('/view(.html)?', async (ctx, next) => {
-    await ctx.render('books/view', {
-        title: '查看',
-        user: 'John'
-    });
-});
-
-
-
-// page-update-item
-router.get('/update(.html)?', async (ctx, next) => {
-    await ctx.render('books/update', {
-        title: '修改',
-        user: 'John'
-    });
-});
+router.prefix('/books')
+    .get('/(index)?', proxyQueryIndexData, actionIndex)
+    .post('/create', proxyCreateItemData, actionCreate)
+    .post('/delete/:id', proxyDeleteItemData, actionDelete)
+    .post('/update/:id', proxyUpdateItemData, actionUpdate)
+    .get('/view/:id', proxyQueryItemData, actionView)
 
 
 

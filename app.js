@@ -1,3 +1,4 @@
+const fs = require('fs');
 const Koa = require('koa');
 const Router = require('koa-router');
 const favicon = require('koa-favicon');

@@ -1,5 +1,5 @@
 const superagent = require('superagent');
-const { httpGet } = require('../utils/request');
+const { httpGet, httpPost } = require('../utils/request');
 const ROOT_ROUTER_PRFIX = 'books';
 
 
@@ -9,21 +9,20 @@ const ROOT_ROUTER_PRFIX = 'books';
 async function proxyQueryIndexData(ctx, next) {
     try {
         const res = await httpGet({
-            hostname: '127.0.0.1',
-            port: '8888',
-            path: '/books'
+            host: 'localhost',
+            port: '8080',
+            path: '/index.php?r=books%2Findex'
         });
-        console.log(res);
+        ctx.state.booksIndex = JSON.parse(res);
     } catch (err) {
         console.error(err);
     }
     await next();
 }
 async function actionIndex(ctx, next) {
-    const data = ctx.state.booksIndex;
+    const list = ctx.state.booksIndex;
     ctx.state.booksIndex = null;
-    // todo: get list data from php server
-    await ctx.render(`${ROOT_ROUTER_PRFIX}/index`, data);
+    await ctx.render(`${ROOT_ROUTER_PRFIX}/index`, { list });
 }
 
 
@@ -46,11 +45,23 @@ async function actionCreate(ctx, next) {
 
 // page-delete-item
 async function proxyDeleteItemData(ctx, next) {
-    console.log(ctx.state);
+    const { id } = ctx.params;
+    try {
+        await httpPost({
+            host: 'localhost',
+            port: '8080',
+            path: `/index.php?r=books%2Fdelete&id=${id}`
+        }, {
+            _csrf: 'X4RCwkCNp7kx5PNvD7rrdWLI7XR8DsHmh2Iw91CLtsI203qjGPvN70XQo1k_390SFpqnRT9Kt7SqAUW1J9T5lg=='
+        });
+    } catch (err) {
+        console.log('+++++++++++==')
+        console.error(err);
+    }
     await next();
 }
 async function actionDelete(ctx, next) {
-    ctx.redirect('/');
+    ctx.redirect('/books');
 }
 
 
@@ -73,15 +84,23 @@ async function actionUpdate(ctx, next) {
 
 // page-view-item
 async function proxyQueryItemData(ctx, next) {
-    console.log(ctx.state);
+    const { id } = ctx.params;
+    try {
+        const res = await httpGet({
+            host: 'localhost',
+            port: '8080',
+            path: `/index.php?r=books%2Fview&id=${id}`
+        });
+        ctx.state.booksItem = JSON.parse(res);
+    } catch (err) {
+        console.error(err);
+    }
     await next();
 }
 async function actionView(ctx, next) {
-    const { id } = ctx.params;
-    await ctx.render(`${ROOT_ROUTER_PRFIX}/view`, {
-        title: '查看',
-        user: 'John ' + id,
-    });
+    const data = ctx.state.booksItem;
+    ctx.state.booksItem = null;
+    await ctx.render(`${ROOT_ROUTER_PRFIX}/view`, data);
 }
 
 

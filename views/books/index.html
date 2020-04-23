@@ -7,8 +7,36 @@
 {% endblock %}
 
 {% block content %}
-<p>This is just an awesome page.</p>
-<h1>hello,{{user}}</h1>
+<p>列表页</p>
+<h1>{{ pagename|title }}</h1>
+<table border="1">
+    <thead>
+        <tr>
+            <td>id</td>
+            <td>书名</td>
+            <td>作者</td>
+            <td>isbn</td>
+            <td>简介</td>
+            <td>创建时间</td>
+            <td>查看</td>
+            <td>修改</td>
+            <td>删除</td>
+        </tr>
+    </thead>
+    {% for item in list %}
+    <tr>
+        <td>{{item.id}}</td>
+        <td>{{item.name}}</td>
+        <td>{{item.author}}</td>
+        <td>{{item.isbn}}</td>
+        <td>{{item.memo}}</td>
+        <td>{{item.create_date}}</td>
+        <td><a href="/books/view/{{item.id}}">查看</a></td>
+        <td><a href="/books/update/{{item.id}}">修改</a></td>
+        <td><a href="/books/delete/{{item.id}}">删除</a></td>
+    </tr>
+    {% endfor %}
+</table>
 <script>
 </script>
 {% endblock %}

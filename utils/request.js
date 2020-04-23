@@ -1,5 +1,6 @@
 const http = require('http');
 const url = require('url');
+const querystring = require('querystring');
 
 
 
@@ -44,7 +45,7 @@ function httpGet(options, query) {
 
 
 
-function httpPost(options, postData) {
+function httpPost(options, postData = {}) {
     return new Promise((resolve, reject) => {
         const _postData = querystring.stringify(postData);
 
@@ -52,12 +53,14 @@ function httpPost(options, postData) {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Content-Length': Buffer.byteLength(postData)
+                // 'Content-Length': Buffer.byteLength(_postData)
             },
             ...options,
         };
 
         const req = http.request(_options, (res) => {
+            const { statusCode } = res;
+            
             let error;
             if (statusCode !== 200) {
                 error = new Error('请求失败\n' +

@@ -21,8 +21,10 @@ const router = new Router();
 
 router.prefix('/books')
     .get('/(index)?', proxyQueryIndexData, actionIndex)
+    .get('/create', proxyCreateItemData, actionCreate)
     .post('/create', proxyCreateItemData, actionCreate)
-    .post('/delete/:id', proxyDeleteItemData, actionDelete)
+    .get('/delete/:id', proxyDeleteItemData, actionDelete)
+    .get('/update/:id', proxyUpdateItemData, actionUpdate)
     .post('/update/:id', proxyUpdateItemData, actionUpdate)
     .get('/view/:id', proxyQueryItemData, actionView)
 

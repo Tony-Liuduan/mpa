@@ -1,0 +1,12 @@
+{
+    "source": {
+        "includePattern": ".+\\.js$",
+        "exclude": [
+            "./node_modules/"
+        ]
+    },
+    "opts": {
+        "encoding": "utf8",
+        "destination": "./docs/jsdoc/"
+    }
+}

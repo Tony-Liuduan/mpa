@@ -6,7 +6,7 @@
   "scripts": {
     "start": "pm2 start pm2.json",
     "dev": "nodemon app.js",
-    "doc": "jsdoc models/*.js -d docs"
+    "docs:api": "rm -rf docs/jsdoc & jsdoc ./**/*.js -c jsdoc.cfg.json"
   },
   "keywords": [],
   "author": "",

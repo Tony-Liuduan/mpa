@@ -8,8 +8,9 @@ const serve = require('koa-static');
 const render = require('koa-swig');
 const co = require('co');
 const bodyParser = require('koa-bodyparser');
-// const { historyApiFallback } = require('koa2-connect-history-api-fallback');
+const { historyApiFallback } = require('koa2-connect-history-api-fallback');
 
+const { pageIndex, page404 } = require('./middlewares/mw-page');
 const routers = require('./routers');
 
 
@@ -64,24 +65,24 @@ app.use(async function (ctx, next) {
 
 
 app.use(favicon(__dirname + '/views/favicon.ico'));
+app.use(historyApiFallback({ whiteList: ['/', '/books', '/api'] }));
 app.use(serve(__dirname + '/assets'));
 app.context.render = co.wrap(render({
     root: path.join(__dirname, 'views'),
     autoescape: true,
-    cache: 'memory',
+    cache: process.env.NODE_ENV === 'development' ? false : 'memory',
     ext: 'html',
-    writeBody: false
+    writeBody: false,
+    // varControls: ['[[', ']]'], // 如需修改模板标识符时使用
 }));
 
 
 
-// handle fallback for HTML5 history API
-// app.use(historyApiFallback({ whiteList: ['/api'] }));
-
-
 
 app.use(bodyParser());
+app.use(pageIndex);
 routers.forEach(r => app.use(r.routes(), r.allowedMethods()));
+app.use(page404);
 
 
 

@@ -1,0 +1,11 @@
+{
+    "name": "node-app",
+    "cwd": ".",
+    "script": "app.js",
+    "log_date_format": "YYYY-MM-DD HH:mm Z",
+    "out_file": "./logs/node-app-stdout.log",
+    "output": "/dev/null",
+    "watch": false,
+    "instances": "max",
+    "exec_mode": "cluster"
+}

@@ -1,32 +1,23 @@
 const Router = require('koa-router');
-const {
-    actionIndex,
-    actionCreate,
-    actionDelete,
-    actionUpdate,
-    actionView,
+const BooksController = require('../controllers/BooksController');
+const Books = require('../models/books');
 
-    proxyQueryIndexData,
-    proxyCreateItemData,
-    proxyDeleteItemData,
-    proxyUpdateItemData,
-    proxyQueryItemData,
-} = require('../controllers/BooksController');
 
+const booksModel = new Books();
+const booksController = new BooksController();
 
 
 const router = new Router();
 
 
-
 router.prefix('/books')
-    .get('/(index)?', proxyQueryIndexData, actionIndex)
-    .get('/create', proxyCreateItemData, actionCreate)
-    .post('/create', proxyCreateItemData, actionCreate)
-    .get('/delete/:id', proxyDeleteItemData, actionDelete)
-    .get('/update/:id', proxyUpdateItemData, actionUpdate)
-    .post('/update/:id', proxyUpdateItemData, actionUpdate)
-    .get('/view/:id', proxyQueryItemData, actionView)
+    .get('/(index)?', booksModel.proxyQueryIndexData, booksController.actionIndex)
+    .get('/create', booksModel.proxyCreateItemData, booksController.actionCreate)
+    .post('/create', booksModel.proxyCreateItemData, booksController.actionCreate)
+    .get('/delete/:id', booksModel.proxyDeleteItemData, booksController.actionDelete)
+    .get('/update/:id', booksModel.proxyUpdateItemData, booksController.actionUpdate)
+    .post('/update/:id', booksModel.proxyUpdateItemData, booksController.actionUpdate)
+    .get('/view/:id', booksModel.proxyQueryItemData, booksController.actionView)
 
 
 

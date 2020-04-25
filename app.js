@@ -1,15 +1,22 @@
 const fs = require('fs');
+const path = require('path');
+const config = require('config');
+
 const Koa = require('koa');
-const Router = require('koa-router');
 const favicon = require('koa-favicon');
 const serve = require('koa-static');
-const views = require('koa-views');
+const render = require('koa-swig');
+const co = require('co');
 const bodyParser = require('koa-bodyparser');
-
+// const { historyApiFallback } = require('koa2-connect-history-api-fallback');
 
 const routers = require('./routers');
+
+
 const app = new Koa();
 
+
+const PORT = config.get('port');
 
 
 
@@ -56,15 +63,20 @@ app.use(async function (ctx, next) {
 
 
 
-
 app.use(favicon(__dirname + '/views/favicon.ico'));
 app.use(serve(__dirname + '/assets'));
-app.use(views(__dirname + '/views', {
-    map: {
-        html: 'swig',
-    },
+app.context.render = co.wrap(render({
+    root: path.join(__dirname, 'views'),
+    autoescape: true,
+    cache: 'memory',
+    ext: 'html',
+    writeBody: false
 }));
 
+
+
+// handle fallback for HTML5 history API
+// app.use(historyApiFallback({ whiteList: ['/api'] }));
 
 
 
@@ -74,4 +86,4 @@ routers.forEach(r => app.use(r.routes(), r.allowedMethods()));
 
 
 
-app.listen(8001);
+app.listen(PORT);

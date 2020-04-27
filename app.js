@@ -10,7 +10,11 @@ const co = require('co');
 const bodyParser = require('koa-bodyparser');
 const { historyApiFallback } = require('koa2-connect-history-api-fallback');
 
-const { pageIndex, page404 } = require('./middlewares/mw-page');
+const {
+    responseIndex,
+    response5xx,
+    response404,
+} = require('./middlewares/page');
 const routers = require('./routers');
 
 
@@ -47,20 +51,13 @@ app.on('error', (err, ctx) => {
     console.log(err.message);
 });
 
-// err handler middleware
-app.use(async function (ctx, next) {
-    try {
-        await next();
-    } catch (err) {
-        console.log('errHandlerMiddleware', err);
-        ctx.body = {
-            code: -1000,
-            msg: err.message,
-            data: null,
-        };
-    }
-});
+// err-5xx handler middleware
+app.use(response5xx);
 
+
+
+// err-404 handler middleware
+app.use(response404);
 
 
 
@@ -79,10 +76,9 @@ app.context.render = co.wrap(render({
 
 
 
+app.use(responseIndex);
 app.use(bodyParser());
-app.use(pageIndex);
 routers.forEach(r => app.use(r.routes(), r.allowedMethods()));
-app.use(page404);
 
 
 

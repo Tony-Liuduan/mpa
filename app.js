@@ -16,6 +16,9 @@ const {
     response404,
 } = require('./middlewares/page');
 const routers = require('./routers');
+const {
+    errorLogger,
+} = require('./utils/logger');
 
 
 const app = new Koa();
@@ -28,37 +31,29 @@ const PORT = config.get('port');
 
 // 当未捕获的 JavaScript 异常一直冒泡回到事件循环时，会触发 'uncaughtException' 事件
 process.on('uncaughtException', (err, origin) => {
-    fs.writeSync(
-        process.stderr.fd,
-        `捕获的异常: ${err}\n` +
-        `异常的来源: ${origin}\n`
-    );
+    errorLogger.error(err);
 });
 
 process.on('unhandledRejection', (reason, promise) => {
-    console.log('promise 未处理的拒绝：', promise, '原因：', reason);
-    // 记录日志、抛出错误、或其他逻辑。
+    errorLogger.error('promise 未处理的拒绝：', promise, '原因：', reason);
 });
 
 // 每当 Promise 被拒绝并且错误处理函数附加到它（例如，使用 promise.catch()）晚于一个 Node.js 事件循环时，就会触发 'rejectionHandled' 事件。
 process.on('rejectionHandled', (promise) => {
-    console.log('______________rejectionHandled', promise);
+    errorLogger.error(promise);
 });
 
 // http.on error:
 // only triggered when err handler middleware not triggered
 app.on('error', (err, ctx) => {
-    console.log(err.message);
+    errorLogger.error(err);
 });
 
 // err-5xx handler middleware
 app.use(response5xx);
 
-
-
 // err-404 handler middleware
 app.use(response404);
-
 
 
 app.use(favicon(__dirname + '/views/favicon.ico'));

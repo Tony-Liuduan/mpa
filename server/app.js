@@ -56,11 +56,11 @@ app.use(response5xx);
 app.use(response404);
 
 
-app.use(favicon(__dirname + '/views/favicon.ico'));
+app.use(favicon(__dirname + '../views/favicon.ico'));
 app.use(historyApiFallback({ whiteList: ['/', '/books', '/api'] }));
-app.use(serve(__dirname + '/assets'));
+app.use(serve(__dirname + '../assets'));
 app.context.render = co.wrap(render({
-    root: path.join(__dirname, 'views'),
+    root: path.join(__dirname, '../views'),
     autoescape: true,
     cache: process.env.NODE_ENV === 'development' ? false : 'memory',
     ext: 'html',

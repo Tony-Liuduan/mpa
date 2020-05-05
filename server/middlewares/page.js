@@ -2,8 +2,6 @@ const { ApiRespnse, isHtmlRequset, isApiRequset } = require('../utils');
 const ChainOfResponsibility = require('../utils/chainOfResponsibility');
 
 
-
-
 function handlePage(fn) {
     return (ctx) => {
         if (isHtmlRequset(ctx)) {
@@ -31,7 +29,7 @@ function handleApi(fn) {
 
 
 
-async function responseIndex(ctx, next) {
+export async function responseIndex(ctx, next) {
     if (/^\/(?:(index)?)(?:(\.html)?)$/.test(ctx.path)) {
         ctx.body = await ctx.render(`index/index`);
         return;
@@ -41,7 +39,7 @@ async function responseIndex(ctx, next) {
 
 
 
-async function response5xx(ctx, next) {
+export async function response5xx(ctx, next) {
     try {
         await next();
     } catch (error) {
@@ -62,7 +60,7 @@ async function response5xx(ctx, next) {
 
 
 
-async function response404(ctx, next) {
+export async function response404(ctx, next) {
     await next();
     const status = ctx.status;
     if (status !== 404) {
@@ -75,12 +73,3 @@ async function response404(ctx, next) {
     chainHtml.setNexter(chainApi);
     chainHtml.execute(ctx);
 }
-
-
-
-
-module.exports = {
-    responseIndex,
-    response5xx,
-    response404,
-};

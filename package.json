@@ -6,16 +6,32 @@
   "scripts": {
     "start": "pm2 start pm2.json",
     "dev": "nodemon app.js",
-    "docs:api": "rm -rf docs/jsdoc & jsdoc ./**/*.js -c jsdoc.cfg.json"
+    "build:server": "gulp",
+    "docs:api": "rm -rf docs/jsdoc & jsdoc ./**/*.js -c jsdoc.cfg.json",
+    "rollup": "rollup -c"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@babel/core": "^7.9.6",
+    "@babel/preset-env": "^7.9.6",
     "clean-webpack-plugin": "^3.0.0",
+    "delete": "^1.1.0",
+    "gulp": "^4.0.2",
+    "gulp-babel": "^8.0.0",
+    "gulp-cli": "^2.2.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-if": "^3.0.0",
+    "gulp-imagemin": "^7.1.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-rollup": "^2.17.0",
+    "gulp-uglify": "^3.0.2",
     "html-webpack-plugin": "^4.2.0",
     "jsdoc": "^3.6.4",
     "nodemon": "^2.0.3",
+    "rollup": "^2.7.6",
+    "through2": "^3.0.1",
     "webpack": "^4.42.1",
     "webpack-cli": "^3.3.11"
   },

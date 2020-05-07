@@ -55,9 +55,11 @@ app.use(response5xx);
 app.use(response404);
 
 
-app.use(favicon(__dirname + '../views/favicon.ico'));
+
+
+app.use(favicon(path.join(__dirname, '../web/favicon.ico')));
 app.use(historyApiFallback({ whiteList: ['/', '/books', '/api'] }));
-app.use(serve(__dirname + '../assets'));
+app.use(serve(path.join(__dirname, '../web/assets')));
 app.context.render = co.wrap(render({
     root: path.join(__dirname, '../web/views'),
     autoescape: true,

@@ -29,7 +29,7 @@ function handleApi(fn) {
 
 
 
-export async function responseIndex(ctx, next) {
+async function responseIndex(ctx, next) {
     if (/^\/(?:(index)?)(?:(\.html)?)$/.test(ctx.path)) {
         ctx.body = await ctx.render(`index/index`);
         return;
@@ -39,7 +39,7 @@ export async function responseIndex(ctx, next) {
 
 
 
-export async function response5xx(ctx, next) {
+async function response5xx(ctx, next) {
     try {
         await next();
     } catch (error) {
@@ -60,7 +60,7 @@ export async function response5xx(ctx, next) {
 
 
 
-export async function response404(ctx, next) {
+async function response404(ctx, next) {
     await next();
     const status = ctx.status;
     if (status !== 404) {
@@ -72,4 +72,11 @@ export async function response404(ctx, next) {
 
     chainHtml.setNexter(chainApi);
     chainHtml.execute(ctx);
+}
+
+
+module.exports = {
+    responseIndex,
+    response5xx,
+    response404,
 }

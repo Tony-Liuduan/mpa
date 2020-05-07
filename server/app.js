@@ -1,10 +1,4 @@
-import path from 'path';
-
-import {
-    responseIndex,
-    response5xx,
-    response404,
-} from './middlewares/page';
+const path = require('path');
 const config = require('config');
 
 const Koa = require('koa');
@@ -15,6 +9,11 @@ const co = require('co');
 const bodyParser = require('koa-bodyparser');
 const { historyApiFallback } = require('koa2-connect-history-api-fallback');
 
+const {
+    responseIndex,
+    response5xx,
+    response404,
+} = require('./middlewares/page');
 const routers = require('./routers');
 const {
     errorLogger,

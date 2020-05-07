@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "pm2 start pm2.json",
-    "dev": "nodemon app.js",
+    "dev": "nodemon server/app.js",
     "build:server": "gulp",
     "docs:api": "rm -rf docs/jsdoc & jsdoc ./**/*.js -c jsdoc.cfg.json",
     "rollup": "rollup -c"

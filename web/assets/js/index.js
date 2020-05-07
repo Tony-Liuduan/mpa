@@ -3,7 +3,7 @@
  * @author liuduan
  * @description 
  * @Date 2020-05-07 16:18:20
- * @LastEditTime 2020-05-07 19:07:19
+ * @LastEditTime 2020-05-07 19:13:25
  * 引用:
  *      http://www.ruanyifeng.com/blog/2019/08/web_components.html
  *      https://zhuanlan.zhihu.com/p/42370005
@@ -31,15 +31,6 @@ class UserCard extends HTMLElement {
         content.querySelector('.container>.name').innerText = this.getAttribute('name');
         content.querySelector('.container>.email').innerText = this.getAttribute('email');
         shadowRoot.appendChild(content);
-    }
-
-    /**
-     * @description 每次将节点连接到 DOM 时都会被调用
-     * @param {type} 
-     * @return 
-     */
-    connectedCallback() {
-        console.log('connectedCallback');
 
         // event
         this.$button = this.shadowRoot.querySelector('button');
@@ -54,10 +45,29 @@ class UserCard extends HTMLElement {
         }, 2000);
     }
 
+    /**
+     * @description 每次将节点连接到 DOM 时都会被调用, 一种常见错误是将 connectedCallback 用做一次性的初始化事件，然而实际上你每次将节点连接到 DOM 时都会被调用。取而代之的，在 constructor 这个 API 接口调用时做一次性初始化工作会更加合适。
+     * @param {type} 
+     * @return 
+     */
+    connectedCallback() {
+        console.log('connectedCallback');
+    }
+
+    /**
+     * @description 从 DOM 上脱离
+     * @param {type} 
+     * @return 
+     */
     disconnectedCallback() {
         console.log('disconnectedCallback');
     }
 
+    /**
+     * @description 跨文档移动
+     * @param {type} 
+     * @return 
+     */
     adoptedCallback() {
         console.log('adoptedCallback');
     }

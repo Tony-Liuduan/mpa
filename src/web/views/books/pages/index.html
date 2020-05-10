@@ -1,12 +1,18 @@
-{% extends '../layout.html' %}
+{% extends '@layouts/layout.html' %}
+
 
 {% block title %}{{title}}{% endblock %}
 
+
 {% block head %}
 {% parent %}
+<!--injectcss-->
 {% endblock %}
 
+
 {% block content %}
+{% parent %}
+{% include "@components/banner.html" %}
 <p>列表页</p>
 <h1>{{ pagename|title }}</h1>
 <table border="1">
@@ -37,4 +43,10 @@
     </tr>
     {% endfor %}
 </table>
+{% endblock %}
+
+
+{% block scripts %}
+{% parent %}
+<!--injectjs-->
 {% endblock %}

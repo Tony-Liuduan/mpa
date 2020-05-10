@@ -1,14 +1,23 @@
-{% extends '../layout.html' %}
+{% extends '@layouts/layout.html' %}
+
 
 {% block title %}{{title}}{% endblock %}
 
+
 {% block head %}
 {% parent %}
+<!--injectcss-->
 {% endblock %}
 
+
 {% block content %}
+{% parent %}
 <p>This is just an awesome page.</p>
 <h1>hello,{{user}}</h1>
-<script>
-</script>
+{% endblock %}
+
+
+{% block scripts %}
+{% parent %}
+<!--injectjs-->
 {% endblock %}

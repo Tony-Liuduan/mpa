@@ -1,12 +1,17 @@
-{% extends '../layout.html' %}
+{% extends '@layouts/layout.html' %}
+
 
 {% block title %}{{title}}{% endblock %}
 
+
 {% block head %}
 {% parent %}
+<!--injectcss-->
 {% endblock %}
 
+
 {% block content %}
+{% parent %}
 <h1>查看详情</h1>
 <li>id：{{id}}</li>
 <li>书名：{{name}}</li>
@@ -15,5 +20,10 @@
 <li>简介：{{memo}}</li>
 <li>创建时间：{{create_date}}</li>
 <br>
-<script></script>
+{% endblock %}
+
+
+{% block scripts %}
+{% parent %}
+<!--injectjs-->
 {% endblock %}

@@ -2,7 +2,7 @@
  * @fileoverview webpack config core
  * @author liuduan
  * @Date 2020-05-10 15:56:51
- * @LastEditTime 2020-05-10 19:18:14
+ * @LastEditTime 2020-05-10 21:19:51
  */
 const path = require('path');
 const glob = require('glob');
@@ -44,6 +44,27 @@ const baseConfig = {
         publicPath: '/',
         filename: 'scripts/[name].bundle.js',
     },
+    module: {
+        rules: [
+            {
+                test: /\.js$/,
+                exclude: /(node_modules|bower_components)/,
+                use: {
+                    loader: 'babel-loader',
+                },
+            },
+        ]
+    },
+    resolve: {
+        alias: {
+            '@': path.resolve('src/web'),
+        },
+    },
+    externals: {
+        jquery: 'jQeury',
+    },
+    // todos : babel config
+    watch: _mode === 'development' ? true : false,
     optimization: {
         runtimeChunk: {
             name: 'runtime',

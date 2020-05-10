@@ -1,15 +1,27 @@
+/**
+ * @fileoverview 
+ * @author liuduan
+ * @Date 2020-05-07 16:11:38
+ * @LastEditTime 2020-05-10 21:40:36
+ * gulp缺点：不能解决文件依赖
+ */
 const {
     src,
     dest,
-    watch,
+    // watch,
     lastRun,
     series,
     // parallel,
 } = require('gulp');
+const watch = require('gulp-watch');
 const del = require('delete');
 const gulpif = require('gulp-if');
 const babel = require('gulp-babel');
-// const rollup = require('gulp-rollup');
+const rollup = require('gulp-rollup');
+const replace = require('@rollup/plugin-replace');
+
+const cleanEntry = './src/server/config/index.js';
+
 // const through2 = require('through2');
 // const uglify = require('gulp-uglify');
 // const imagemin = require('gulp-imagemin');
@@ -28,7 +40,7 @@ const babel = require('gulp-babel');
 
 function clean(cb) {
     // 直接使用 `delete` 模块，避免使用 gulp-rimraf 插件
-    del(['build'], cb);
+    del(['dist'], cb);
 }
 
 function isJavaScript(file) {
@@ -37,9 +49,26 @@ function isJavaScript(file) {
 }
 
 function build() {
-    // 在同一个管道（pipeline）上处理 JavaScript 和 CSS 文件
-    return src(['server/**/*.js'], { since: lastRun(build) })
-        .pipe(gulpif(isJavaScript, babel()))
+    // watch('css/**/*.css', { ignoreInitial: false })
+    return src(['src/server/**/*.js'], { since: lastRun(build) })
+        .pipe(gulpif(isJavaScript, babel({
+            babelrc: false,
+            ignore: [cleanEntry],
+            plugins: ['@babel/plugin-transform-modules-commonjs'],
+        })))
+        // todos：线上清洗 分开写 parallel
+        // .pipe(rollup({
+        //     input: cleanEntry,
+        //     output: {
+        //         format: 'cjs',
+        //     },
+        //     plugins: [
+        //         // 替换if判断文件
+        //         replace({
+        //             'process.env.NODE_ENV': JSON.stringify('production'),
+        //         }),
+        //     ],
+        // }))
         // .pipe(rollup({
         //     // any option supported by Rollup can be set here.
         //     input: 'server/app.js',
@@ -48,18 +77,19 @@ function build() {
         //         treeshake: false,
         //     },
         // }))
-        .pipe(dest('build'));
+        .pipe(dest('dist'));
 }
 
 // 'add'、'addDir'、'change'、'unlink'、'unlinkDir'、'ready'、'error'。此外，还有一个 'all' 事件，它表示除 'ready' 和 'error' 之外的所有事件。
-watch(
-    'server/**/*.js',
-    {
-        events: 'all',
-        delay: 500,
-    },
-    series(clean, build),
-);
+// todo: use gulp-watch
+// watch(
+//     'server/**/*.js',
+//     {
+//         events: 'all',
+//         delay: 500,
+//     },
+//     series(clean, build),
+// );
 
 
 exports.default = series(clean, build);

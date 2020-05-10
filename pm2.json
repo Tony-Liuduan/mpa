@@ -1,6 +1,6 @@
 {
     "name": "mpa-app",
-    "cwd": "./server",
+    "cwd": "./dist",
     "script": "app.js",
     "log_date_format": "YYYY-MM-DD HH:mm Z",
     "output": "/dev/null",

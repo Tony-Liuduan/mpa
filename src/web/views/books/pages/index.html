@@ -5,13 +5,11 @@
 
 
 {% block head %}
-{% parent %}
 <!--injectcss-->
 {% endblock %}
 
 
 {% block content %}
-{% parent %}
 {% include "@components/banner.html" %}
 <p>列表页</p>
 <h1>{{ pagename|title }}</h1>
@@ -47,6 +45,5 @@
 
 
 {% block scripts %}
-{% parent %}
 <!--injectjs-->
 {% endblock %}

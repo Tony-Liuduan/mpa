@@ -1,4 +1,4 @@
 #!/usr/bin/env bash 
-# 服务端线上环境执行文件
+# 服务端线上编译执行文件
 
-pm2 start pm2.json
+cross-env NODE_ENV=production gulp

@@ -5,20 +5,17 @@
 
 
 {% block head %}
-{% parent %}
 <!--injectcss-->
 {% endblock %}
 
 
 {% block content %}
-{% parent %}
 {% include "@components/banner.html" %}
 <p>Hello, Welcome to mpa project</p>
 {% endblock %}
 
 
 {% block scripts %}
-{% parent %}
 <!--injectjs-->
 
 <!-- 待验证，应该和injectjs等效

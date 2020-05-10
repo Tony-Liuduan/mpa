@@ -33,3 +33,12 @@
     ```sh
     chmod -R +x scripts
     ```
+
+
+
+## todos
+1. require to import & gulp
+2. ？node-bash-title
+3. 让项目跑起来
+4. 整理webpack演进历程
+5. create cli

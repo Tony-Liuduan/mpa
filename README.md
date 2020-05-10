@@ -41,4 +41,12 @@
 2. ？node-bash-title
 3. 让项目跑起来
 4. 整理webpack演进历程
-5. create cli
+5. create cli (Printer & program)
+6. add json2ts json to ts in cli
+7. inquirer
+    - mkdir project dir
+    - select template
+    - git pull template & ora loading & download-git-repo
+    - render template & shell.sed() ?
+8. 自动添加组件文件夹，自动导入组件到js文件
+9. webpack plugin insert nomodule module ??

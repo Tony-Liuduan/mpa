@@ -1,5 +1,23 @@
 # mpa
 
+## run project
+
+### development
+```sh
+npm run client:dev
+npm run server:dev
+npm run server:php
+npm run server:start
+```
+
+### production
+```sh
+npm run client:prod
+npm run server:prop
+npm run server:php
+npm start
+```
+
 
 ## package.json 
 
@@ -36,10 +54,10 @@
 
 
 
-## todos
-1. require to import & gulp
+## TODO:
+<!-- 1. require to import & gulp
 2. ？node-bash-title
-3. 让项目跑起来
+3. 让项目跑起来 -->
 4. 整理webpack演进历程
 5. create cli (Printer & program)
 6. add json2ts json to ts in cli

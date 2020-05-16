@@ -1,3 +1,7 @@
-.components-banner a{
+.components-banner a {
     color: rebeccapurple;
+}
+
+.components-banner li {
+    list-style-type: none;
 }

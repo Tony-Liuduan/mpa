@@ -2,14 +2,14 @@
  * @fileoverview 实现BooksController
  * @author liuduan
  * @Date 2020-04-19 22:24:47
- * @LastEditTime 2020-05-16 17:32:23
+ * @LastEditTime 2020-05-17 00:14:56
  */
 import Books from '../models/Books';
 
 
 
 
-ROOT_ROUTER_PRFIX = 'books';
+const ROOT_ROUTER_PRFIX = 'books/pages';
 
 
 
@@ -24,7 +24,7 @@ export default class BooksController {
     async actionIndex(ctx, next) {
         const books = new Books(ctx);
         const list = await books.queryList({});
-        ctx.body = await ctx.render(`${ROOT_ROUTER_PRFIX}/index`, { list });
+        ctx.body = await ctx.render(`${ROOT_ROUTER_PRFIX}/index`, { list, pagename: '图书列表', title: '图书首页' });
     }
 
 

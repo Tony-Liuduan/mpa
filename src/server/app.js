@@ -2,7 +2,7 @@
  * @fileoverview app server entry
  * @author liuduan
  * @Date 2020-05-07 16:11:38
- * @LastEditTime 2020-05-16 17:29:40
+ * @LastEditTime 2020-05-17 00:39:41
  */
 import path from 'path';
 import config from 'config';
@@ -62,7 +62,7 @@ app.use(response404);
 
 
 
-app.use(favicon(path.join(__dirname, '../web/favicon.ico')));
+app.use(favicon(path.join(process.cwd(), 'favicon.ico')));
 app.use(historyApiFallback({ whiteList: ['/', '/books', '/api'] }));
 app.use(serve(path.join(__dirname, '../web/assets')));
 app.context.render = co.wrap(render({
@@ -79,9 +79,13 @@ app.context.render = co.wrap(render({
 
 app.use(responseIndex);
 app.use(bodyParser());
-routers.forEach(r => app.use(r.routes(), r.allowedMethods()));
+for (const route of Object.values(routers)) {
+    app.use(route.routes(), route.allowedMethods())
+}
 
 
 
 
-app.listen(PORT);
+app.listen(PORT, () => {
+    console.log('🍺服务启动成功', port);
+})

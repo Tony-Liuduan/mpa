@@ -4,6 +4,9 @@
         "node_modules/",
         "logs/"
     ],
+    "watch": [
+        "dist/server/"
+    ],
     "env": {
         "NODE_ENV": "development"
     },

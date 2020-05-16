@@ -2,8 +2,9 @@
  * @fileoverview 实现Books数据模型
  * @author liuduan
  * @Date 2020-04-25 10:19:04
- * @LastEditTime 2020-05-16 17:30:38
+ * @LastEditTime 2020-05-16 18:28:42
  */
+
 import config from 'config';
 import { httpGet, httpPost } from '../utils/request';
 

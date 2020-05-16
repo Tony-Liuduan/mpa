@@ -2,16 +2,21 @@
  * @fileoverview webpack config core
  * @author liuduan
  * @Date 2020-05-10 15:56:51
- * @LastEditTime 2020-05-10 21:19:51
+ * @LastEditTime 2020-05-17 00:30:03
  */
 const path = require('path');
 const glob = require('glob');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const merge = require('webpack-merge');
+
 const argv = require('yargs-parser')(process.argv.slice(2));
 const _mode = argv.mode || 'development';
-const webpackConfig = require(`./config/webpack.${_mode}.js`);
-const HtmlInjectAssetsPlugin = require('./config/HtmlInjectAssetsPlugin.js');
+const merge = require('webpack-merge');
+const webpackConfig = require(`./config/webpack/webpack.${_mode}.js`);
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlInjectAssetsPlugin = require('./config/webpack/plugins/HtmlInjectAssetsPlugin.js');
+
+const setTitle = require('node-bash-title');
+setTitle(`client-${_mode}🦏🦏`);
+
 
 
 const _entry = {};
@@ -40,14 +45,14 @@ for (const filepath of entryFiles) {
 const baseConfig = {
     entry: _entry,
     output: {
-        path: path.join(__dirname, './dist/assets'),
+        path: path.join(__dirname, './dist/web/assets'),
         publicPath: '/',
         filename: 'scripts/[name].bundle.js',
     },
     module: {
         rules: [
             {
-                test: /\.js$/,
+                test: /\.jsx?$/,
                 exclude: /(node_modules|bower_components)/,
                 use: {
                     loader: 'babel-loader',
@@ -61,7 +66,7 @@ const baseConfig = {
         },
     },
     externals: {
-        jquery: 'jQeury',
+        jquery: 'jQuery',
     },
     // todos : babel config
     watch: _mode === 'development' ? true : false,

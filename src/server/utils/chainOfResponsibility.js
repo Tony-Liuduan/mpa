@@ -2,7 +2,7 @@
  * @fileoverview ChainOfResponsibility职责链类
  * @author liuduan
  * @Date 2020-04-27 10:36:48
- * @LastEditTime 2020-05-16 17:26:58
+ * @LastEditTime 2020-05-16 19:04:14
  */
 
 
@@ -31,7 +31,7 @@ export default class ChainOfResponsibility {
         const result = this.fn.apply(this, args);
         // 同步模式
         if (result === 'next') {
-            return this.next();
+            return this.next(...args);
         }
         return result;
     }
@@ -40,6 +40,6 @@ export default class ChainOfResponsibility {
      * @description 调度下一个执行人工作
      */
     next(...args) {
-        return this.nexter && this.nexter.execute.apply(this.nexter, ...args);
+        return this.nexter && this.nexter.execute.apply(this.nexter, args);
     }
 }

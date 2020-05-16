@@ -2,7 +2,7 @@
  * @fileoverview 小工具库
  * @author liuduan
  * @Date 2020-04-27 10:50:45
- * @LastEditTime 2020-05-16 17:26:33
+ * @LastEditTime 2020-05-16 19:04:34
  */
 
  
@@ -35,7 +35,7 @@ class ApiRespnse {
  * @return {boolean}
  */
 function isHtmlRequset(ctx) {
-    const accept = ctx.header.accept;
+    const accept = (ctx && ctx.header) ? ctx.header.accept : false;
     return !accept || accept.indexOf('text/html') > -1;
 }
 
@@ -47,7 +47,7 @@ function isHtmlRequset(ctx) {
  * @return {boolean}
  */
 function isApiRequset(ctx) {
-    const accept = ctx.header.accept;
+    const accept = (ctx && ctx.header) ? ctx.header.accept : false;
     return accept && accept.indexOf('application/json') > -1;
 }
 

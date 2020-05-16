@@ -2,7 +2,7 @@
  * @fileoverview middleware-handle:page
  * @author liuduan
  * @Date 2020-05-07 16:11:38
- * @LastEditTime 2020-05-16 17:31:48
+ * @LastEditTime 2020-05-16 23:54:34
  */
 import { ApiRespnse, isHtmlRequset, isApiRequset } from '../utils';
 import ChainOfResponsibility from '../utils/chainOfResponsibility';
@@ -37,7 +37,7 @@ function handleApi(fn) {
 
 async function responseIndex(ctx, next) {
     if (/^\/(?:(index)?)(?:(\.html)?)$/.test(ctx.path)) {
-        ctx.body = await ctx.render(`index/index`);
+        ctx.body = await ctx.render('index/pages/index');
         return;
     }
     await next();

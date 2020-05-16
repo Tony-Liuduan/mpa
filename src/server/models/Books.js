@@ -2,7 +2,7 @@
  * @fileoverview 实现Books数据模型
  * @author liuduan
  * @Date 2020-04-25 10:19:04
- * @LastEditTime 2020-05-16 18:28:42
+ * @LastEditTime 2020-05-17 00:47:24
  */
 
 import config from 'config';
@@ -16,7 +16,7 @@ const PROXY_SERVER = config.get('proxyServer');
 
 export default class Books {
     /**
-     * @constructor
+     * @constructor ModalBooks
      * @param {Object} app koa2 执行上下文 ctx
      */
     constructor(app) {

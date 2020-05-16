@@ -2,13 +2,13 @@
  * @fileoverview ChainOfResponsibility职责链类
  * @author liuduan
  * @Date 2020-04-27 10:36:48
- * @LastEditTime 2020-05-16 19:04:14
+ * @LastEditTime 2020-05-17 00:49:30
  */
 
 
 export default class ChainOfResponsibility {
     /**
-     * @constructor
+     * @constructor ChainOfResponsibility
      * @param {function} fn 执行者的执行函数
      */
     constructor(fn) {
@@ -17,6 +17,7 @@ export default class ChainOfResponsibility {
     }
 
     /**
+    * @constructor ChainOfResponsibility
     * @description 设置下一个执行者
     * @param {object} nexter 执行者
     */
@@ -25,6 +26,7 @@ export default class ChainOfResponsibility {
     }
 
     /**
+     * @constructor ChainOfResponsibility
      * @description 调度工作执行
      */
     execute(...args) {
@@ -37,6 +39,7 @@ export default class ChainOfResponsibility {
     }
 
     /**
+     * @constructor ChainOfResponsibility
      * @description 调度下一个执行人工作
      */
     next(...args) {

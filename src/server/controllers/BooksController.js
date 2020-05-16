@@ -2,7 +2,7 @@
  * @fileoverview 实现BooksController
  * @author liuduan
  * @Date 2020-04-19 22:24:47
- * @LastEditTime 2020-05-17 00:14:56
+ * @LastEditTime 2020-05-17 00:46:03
  */
 import Books from '../models/Books';
 
@@ -15,7 +15,7 @@ const ROOT_ROUTER_PRFIX = 'books/pages';
 
 
 /** 
- * @constructor 
+ * @constructor BooksController
  */
 export default class BooksController {
     /**

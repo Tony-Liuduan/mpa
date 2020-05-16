@@ -2,7 +2,7 @@
  * @fileoverview 小工具库
  * @author liuduan
  * @Date 2020-04-27 10:50:45
- * @LastEditTime 2020-05-16 19:04:34
+ * @LastEditTime 2020-05-17 00:47:46
  */
 
  
@@ -10,7 +10,6 @@
 
 /**
 * @class ApiRespnse api接口响应体类
-* @author
 */
 class ApiRespnse {
     /**

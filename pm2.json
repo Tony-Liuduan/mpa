@@ -1,9 +1,8 @@
 {
     "name": "mpa-app",
-    "cwd": "./dist/server",
-    "script": "app.js",
+    "cwd": "./",
+    "script": "dist/server/app.js",
     "log_date_format": "YYYY-MM-DD HH:mm Z",
-    "output": "/dev/null",
     "watch": false,
     "instances": 2,
     "exec_mode": "cluster",

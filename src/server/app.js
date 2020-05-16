@@ -1,23 +1,28 @@
-const path = require('path');
-const config = require('config');
+/**
+ * @fileoverview app server entry
+ * @author liuduan
+ * @Date 2020-05-07 16:11:38
+ * @LastEditTime 2020-05-16 17:29:40
+ */
+import path from 'path';
+import config from 'config';
+import Koa from 'koa';
+import favicon from 'koa-favicon';
+import serve from 'koa-static';
+import render from 'koa-swig';
+import co from 'co';
+import bodyParser from 'koa-bodyparser';
+import { historyApiFallback } from 'koa2-connect-history-api-fallback';
 
-const Koa = require('koa');
-const favicon = require('koa-favicon');
-const serve = require('koa-static');
-const render = require('koa-swig');
-const co = require('co');
-const bodyParser = require('koa-bodyparser');
-const { historyApiFallback } = require('koa2-connect-history-api-fallback');
-
-const {
+import {
     responseIndex,
     response5xx,
     response404,
-} = require('./middlewares/page');
-const routers = require('./routers');
-const {
+} from './middlewares/page';
+import * as routers from './routers';
+import {
     errorLogger,
-} = require('./utils/logger');
+} from './utils/logger';
 
 
 const app = new Koa();

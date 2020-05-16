@@ -1,9 +1,12 @@
 /**
  * @fileoverview ChainOfResponsibility职责链类
  * @author liuduan
+ * @Date 2020-04-27 10:36:48
+ * @LastEditTime 2020-05-16 17:26:58
  */
 
-module.exports = class ChainOfResponsibility {
+
+export default class ChainOfResponsibility {
     /**
      * @constructor
      * @param {function} fn 执行者的执行函数

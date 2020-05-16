@@ -1,8 +1,10 @@
 /**
  * @fileoverview 实现BooksController
  * @author liuduan
+ * @Date 2020-04-19 22:24:47
+ * @LastEditTime 2020-05-16 17:32:23
  */
-const Books = require('../models/Books');
+import Books from '../models/Books';
 
 
 
@@ -15,7 +17,7 @@ ROOT_ROUTER_PRFIX = 'books';
 /** 
  * @constructor 
  */
-class BooksController {
+export default class BooksController {
     /**
      * @description actionIndex 渲染books列表页
      */
@@ -60,8 +62,3 @@ class BooksController {
         ctx.body = await ctx.render(`${ROOT_ROUTER_PRFIX}/view`, item);
     }
 }
-
-
-
-
-module.exports = BooksController;

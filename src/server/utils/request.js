@@ -1,6 +1,6 @@
-const http = require('http');
-const url = require('url');
-const querystring = require('querystring');
+import http from 'http';
+import url from 'url';
+import querystring from 'querystring';
 
 
 
@@ -60,7 +60,7 @@ function httpPost(options, postData = {}) {
 
         const req = http.request(_options, (res) => {
             const { statusCode } = res;
-            
+
             let error;
             if (statusCode !== 200) {
                 error = new Error('请求失败\n' +

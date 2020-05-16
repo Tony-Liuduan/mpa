@@ -1,5 +1,11 @@
-const { ApiRespnse, isHtmlRequset, isApiRequset } = require('../utils');
-const ChainOfResponsibility = require('../utils/chainOfResponsibility');
+/**
+ * @fileoverview middleware-handle:page
+ * @author liuduan
+ * @Date 2020-05-07 16:11:38
+ * @LastEditTime 2020-05-16 17:31:48
+ */
+import { ApiRespnse, isHtmlRequset, isApiRequset } from '../utils';
+import ChainOfResponsibility from '../utils/chainOfResponsibility';
 
 
 function handlePage(fn) {
@@ -75,7 +81,7 @@ async function response404(ctx, next) {
 }
 
 
-module.exports = {
+export {
     responseIndex,
     response5xx,
     response404,

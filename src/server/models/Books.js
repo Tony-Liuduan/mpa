@@ -1,10 +1,11 @@
 /**
  * @fileoverview 实现Books数据模型
  * @author liuduan
+ * @Date 2020-04-25 10:19:04
+ * @LastEditTime 2020-05-16 17:30:38
  */
-const config = require('config');
-// const superagent = require('superagent');
-const { httpGet, httpPost } = require('../utils/request');
+import config from 'config';
+import { httpGet, httpPost } from '../utils/request';
 
 
 const PROXY_SERVER = config.get('proxyServer');
@@ -12,7 +13,7 @@ const PROXY_SERVER = config.get('proxyServer');
 
 
 
-class Books {
+export default class Books {
     /**
      * @constructor
      * @param {Object} app koa2 执行上下文 ctx
@@ -84,7 +85,3 @@ class Books {
         return JSON.parse(res);
     }
 }
-
-
-
-module.exports = Books;

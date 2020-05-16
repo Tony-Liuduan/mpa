@@ -1,5 +1,13 @@
-// 详见：https://zhuanlan.zhihu.com/p/22110802
-const log4js = require('log4js');
+/**
+ * @fileoverview logger base log4js
+ * @author liuduan
+ * @Date 2020-04-29 09:45:34
+ * @LastEditTime 2020-05-16 17:26:03
+ * 详见：https://zhuanlan.zhihu.com/p/22110802
+ */
+import log4js from 'log4js';
+
+
 log4js.configure({
     appenders: {
         info: {
@@ -50,7 +58,7 @@ errorLogger.error('Cheese is too ripe!');
 errorLogger.fatal('Cheese was breeding ground for listeria.');
 
 
-module.exports = {
+export {
     log4js,
     logger,
     httpLogger,

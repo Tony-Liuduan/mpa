@@ -1,0 +1,25 @@
+项目:
+  ✔ mpa-app
+  ☐ my-cli @high
+  ☐ 性能脚本 @critical @today
+
+Todos:
+  New:
+    ☐ Press Cmd/Ctrl+Enter to add a new todo
+  Done:
+    ✔ Press Alt+D to mark a todo as done @done(20-05-17 14:29)
+  Cancelled:
+    ✘ Press Alt+C to mark a todo as cancelled @cancelled(20-05-17 14:29)
+  Tagging:
+    ☐ 整理webpack演进历程 @tag
+    ☐ add json2ts json to ts in cli: @critical
+    ☐ inquirer @tag
+        ☐ mkdir project dir
+        ☐ select template
+        ☐ git pull template & ora loading & download-git-repo
+        ☐ render template & shell.sed() ?
+    ☐ 自动添加组件文件夹，自动导入组件到js文件 @low
+    ☐ webpack plugin insert nomodule module ??
+    ☐ NG 配置 etag cache-control expries @critical
+  Timekeeping:
+    

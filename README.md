@@ -55,9 +55,6 @@ npm start
 
 
 ## TODO:
-<!-- 1. require to import & gulp
-2. ？node-bash-title
-3. 让项目跑起来 -->
 4. 整理webpack演进历程
 5. create cli (Printer & program)
 6. add json2ts json to ts in cli
@@ -68,3 +65,4 @@ npm start
     - render template & shell.sed() ?
 8. 自动添加组件文件夹，自动导入组件到js文件
 9. webpack plugin insert nomodule module ??
+10. NG 配置 etag cache-control expries

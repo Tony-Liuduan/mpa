@@ -2,8 +2,9 @@
  * @fileoverview 实现BooksController
  * @author liuduan
  * @Date 2020-04-19 22:24:47
- * @LastEditTime 2020-05-22 14:20:29
+ * @LastEditTime 2020-05-22 20:55:29
  */
+import cheerio from 'cheerio';
 import Books from '../models/Books';
 import { bigpipeResponseHtml } from '../utils/bigpipe';
 import {
@@ -29,12 +30,22 @@ export default class BooksController {
         const books = new Books(ctx);
         const list = await books.queryList({});
         const html = await ctx.render(`${ROOT_ROUTER_PRFIX}/index`, { list, pagename: '图书列表', title: '图书首页' });
-        try {
-            await bigpipeResponseHtml(ctx, html);
-        } catch (e) {
-            errorLogger.error(e);
-            ctx.body = html;
-        }
+        if (!ctx.header['x-pjax']) {
+            try {
+                await bigpipeResponseHtml(ctx, html);
+            } catch (e) {
+                errorLogger.error(e);
+                ctx.body = html;
+            }
+            return;
+        } 
+
+        const $ = cheerio.load(html);
+
+        ctx.body = 'cherrio';
+
+        
+
     }
 
 

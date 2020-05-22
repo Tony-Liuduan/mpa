@@ -1,0 +1,18 @@
+☐ bigpipe，readable pip 到 ctx.res
+☐ jquery-pjax 
+☐ wrk 压测工具 qps测试 https://github.com/wg/wrk
+qps = pv / t = 10万请求 / 10 * 24 * 60 * 60 s
+wrk -t12 -c200 -d60s http://localhost:8001
+12个线程 200个并发请求 60s内 
+test buffer and string
+☐ ab 压测，linux自带 ab
+压测块景设置： 
+ab -n 800 -c 800  http://192.168.0.10/ 
+（-n发出800个请求，-c模拟800并发，相当800人同时访问，后面是测试url）
+ 
+ab -t 60 -c 100 http://192.168.0.10/ 
+在60秒内发请求，一次100个请求。 
+   
+//如果需要在url中带参数，这样做 
+ab -t 60 -c 100 -T "text/plain" -p p.txt http://192.168.0.10/hello.html 
+☐ quicklink

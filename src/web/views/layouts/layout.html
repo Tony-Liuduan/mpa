@@ -8,7 +8,11 @@
 </head>
 
 <body>
-    {% block content %}{% endblock %}
+    <h1>test</h1>
+    {% include "../../components/banner/banner.html" %}
+    <div id='root'>
+        {% block content %}{% endblock %}
+    </div>
     <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
     {% block scripts %}{% endblock %}
 </body>

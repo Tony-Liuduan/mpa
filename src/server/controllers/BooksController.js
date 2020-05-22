@@ -2,9 +2,13 @@
  * @fileoverview 实现BooksController
  * @author liuduan
  * @Date 2020-04-19 22:24:47
- * @LastEditTime 2020-05-17 00:46:03
+ * @LastEditTime 2020-05-22 14:20:29
  */
 import Books from '../models/Books';
+import { bigpipeResponseHtml } from '../utils/bigpipe';
+import {
+    errorLogger,
+} from '../utils/logger';
 
 
 
@@ -24,7 +28,13 @@ export default class BooksController {
     async actionIndex(ctx, next) {
         const books = new Books(ctx);
         const list = await books.queryList({});
-        ctx.body = await ctx.render(`${ROOT_ROUTER_PRFIX}/index`, { list, pagename: '图书列表', title: '图书首页' });
+        const html = await ctx.render(`${ROOT_ROUTER_PRFIX}/index`, { list, pagename: '图书列表', title: '图书首页' });
+        try {
+            await bigpipeResponseHtml(ctx, html);
+        } catch (e) {
+            errorLogger.error(e);
+            ctx.body = html;
+        }
     }
 
 

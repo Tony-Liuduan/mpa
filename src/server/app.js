@@ -2,11 +2,19 @@
  * @fileoverview app server entry
  * @author liuduan
  * @Date 2020-05-07 16:11:38
- * @LastEditTime 2020-05-24 15:11:04
+ * @LastEditTime 2020-05-24 18:52:13
  */
 import path from 'path';
 import config from 'config';
 import Koa from 'koa';
+import {
+    createContainer,
+    Lifetime,
+} from 'awilix';
+import {
+    scopePerRequest,
+    loadControllers,
+} from 'awilix-koa';
 import favicon from 'koa-favicon';
 import serve from 'koa-static';
 import render from 'koa-swig';
@@ -19,7 +27,6 @@ import {
     response5xx,
     response404,
 } from './middlewares/page';
-import * as routers from './routers';
 import {
     errorLogger,
 } from './utils/logger';
@@ -73,10 +80,26 @@ app.context.render = co.wrap(render({
 
 app.use(responseIndex);
 app.use(bodyParser());
-// eslint-disable-next-line no-restricted-syntax
-for (const route of Object.values(routers)) {
-    app.use(route.routes(), route.allowedMethods());
-}
+// for (const route of Object.values(routers)) {
+//     app.use(route.routes(), route.allowedMethods());
+// }
+/* --------------- IOC 实现 routers config by https://www.npmjs.com/package/awilix-koa ----------------- */
+const container = createContainer();
+// The `TodosService` lives in services/TodosService
+container.loadModules([`${__dirname}/services/*.js`], {
+    // we want `TodosService` to be registered as `todosService`.
+    formatName: 'camelCase',
+    resolverOptions: {
+        // We want instances to be scoped to the Koa request.
+        // We need to set that up.
+        lifetime: Lifetime.SCOPED,
+    },
+});
+app.use(scopePerRequest(container));
+// Loads all controllers in the `routes` folder
+// relative to the current working directory.
+// This is a glob pattern.
+app.use(loadControllers('controllers/*.js', { cwd: __dirname }));
 
 
 app.listen(PORT, () => {

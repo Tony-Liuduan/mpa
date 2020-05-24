@@ -20,13 +20,14 @@ ab -t 60 -c 100 -T "text/plain" -p p.txt http://192.168.0.10/hello.html
 ---
 ✔ tabnine @done(20-05-24 15:01)
 ☐ pjax源码
-☐ 依赖注入，IOC，控制反转：控制反转（Inversion of Control，缩写为IoC），是面向对象编程中的一种设计原则，可以用来减低计算机代码之间的耦合度。其中最常见的方式叫做依赖注入（Dependency Injection，简称DI），还有一种方式叫“依赖查找”（Dependency Lookup）
-    - 手段：DI - 面向切面注入的@方式
+✔ 依赖注入，IOC，控制反转：控制反转（Inversion of Control，缩写为IoC），是面向对象编程中的一种设计原则，可以用来减低计算机代码之间的耦合度。其中最常见的方式叫做依赖注入（Dependency Injection，简称DI），还有一种方式叫“依赖查找”（Dependency Lookup） @done(20-05-24 18:40)
+    ✔ 手段：DI - 面向切面注入的@方式 @done(20-05-24 18:40)
 ✔ AOP 面向切面编程 @done(20-05-24 15:01)
-☐ 依赖注入工具：https://www.npmjs.com/package/awilix
-☐ https://www.npmjs.com/package/awilix-koa
+✔ 依赖注入工具：https://www.npmjs.com/package/awilix @done(20-05-24 18:40)
+✔ https://www.npmjs.com/package/awilix-koa @done(20-05-24 18:40)
 ✔ eslint + prettier @done(20-05-24 15:59)
 ✔ eslint --init @done(20-05-24 15:59)
 ✔ 自动重启库 gulp-plumber @done(20-05-24 16:11)
 ☐ type=module type=nomondule
 ☐ type=xxx 还会请求src js吗 https://www.cnblogs.com/Grewer/p/9518146.html
+☐ koa 洋葱模型 执行顺序

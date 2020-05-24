@@ -2,9 +2,10 @@
  * @fileoverview
  * @author liuduan
  * @Date 2020-05-10 17:34:05
- * @LastEditTime 2020-05-10 21:29:31
+ * @LastEditTime 2020-05-24 21:53:04
  */
-import banner from '@/components/banner/banner.js';
+// import App from '@/components/lib/app.js';
 
 
-banner.init();
+// const banner = App.use('banner');
+// banner.test();

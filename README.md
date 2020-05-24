@@ -51,3 +51,17 @@ npm start
     ```sh
     chmod -R +x scripts
     ```
+
+
+
+## nodejs 性能优化
+### 内存泄露
+v8, wrk/JMeter，开发机测试
+1. process.memoryUsage
+    - rss
+    - ...
+2. 监听内存泄露 memwatch+heapdump
+3. 函数内的变量时可以随着函数执行被回收，但是全局的不行，避免使用对象作为缓存，使用redis解决
+4. log4js不能来了就写，会造成内存泄露，消息队列
+5. 闭包
+6. WeekMap

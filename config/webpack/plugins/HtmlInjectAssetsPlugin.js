@@ -1,11 +1,11 @@
-/* eslint-disable import/no-extraneous-dependencies */
 /**
  * @fileoverview html注入静态资源插件，通过html-webpack-plugin插件将access资源inject到html指定位置
  * @author liuduan
  * @Date 2020-05-10 18:17:51
- * @LastEditTime 2020-05-24 15:49:05
+ * @LastEditTime 2020-05-24 16:06:26
  * @source https://www.npmjs.com/package/html-webpack-plugin
  */
+/* eslint-disable import/no-extraneous-dependencies */
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 

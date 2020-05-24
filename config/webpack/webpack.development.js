@@ -1,10 +1,10 @@
-/* eslint-disable import/no-extraneous-dependencies */
 /**
  * @fileoverview webpack development config
  * @author liuduan
  * @Date 2020-05-10 16:56:56
- * @LastEditTime 2020-05-24 15:49:13
+ * @LastEditTime 2020-05-24 16:06:33
  */
+/* eslint-disable import/no-extraneous-dependencies */
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 

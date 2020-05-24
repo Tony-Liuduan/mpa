@@ -2,10 +2,10 @@
  * @fileoverview rollup config
  * @author liuduan
  * @Date 2020-05-07 16:11:38
- * @LastEditTime 2020-05-24 15:16:17
+ * @LastEditTime 2020-05-24 16:14:54
  */
 export default {
-    input: 'backup/rollup/main.js',
+    input: 'rollup/main.js',
     output: {
         file: 'dist/bundle.js',
         format: 'cjs',

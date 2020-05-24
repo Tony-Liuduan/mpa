@@ -1,10 +1,10 @@
-/* eslint-disable import/no-dynamic-require */
 /**
  * @fileoverview webpack config core
  * @author liuduan
  * @Date 2020-05-10 15:56:51
- * @LastEditTime 2020-05-24 15:25:34
+ * @LastEditTime 2020-05-24 16:06:11
  */
+/* eslint-disable import/no-dynamic-require */
 const path = require('path');
 const glob = require('glob');
 

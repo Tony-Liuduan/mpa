@@ -25,8 +25,8 @@ ab -t 60 -c 100 -T "text/plain" -p p.txt http://192.168.0.10/hello.html
 ✔ AOP 面向切面编程 @done(20-05-24 15:01)
 ☐ 依赖注入工具：https://www.npmjs.com/package/awilix
 ☐ https://www.npmjs.com/package/awilix-koa
-☐ eslint + prettier
-☐ eslint --init 
-☐ 自动重启库？？？ 1：50分钟
+✔ eslint + prettier @done(20-05-24 15:59)
+✔ eslint --init @done(20-05-24 15:59)
+✔ 自动重启库 gulp-plumber @done(20-05-24 16:11)
 ☐ type=module type=nomondule
 ☐ type=xxx 还会请求src js吗 https://www.cnblogs.com/Grewer/p/9518146.html

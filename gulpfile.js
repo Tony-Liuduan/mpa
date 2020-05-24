@@ -2,7 +2,7 @@
  * @fileoverview gulp config for nodejs
  * @author liuduan
  * @Date 2020-05-07 16:11:38
- * @LastEditTime 2020-05-24 15:16:02
+ * @LastEditTime 2020-05-24 16:10:04
  * gulp缺点：不能解决文件依赖
  */
 const {
@@ -14,6 +14,7 @@ const {
 const watch = require('gulp-watch');
 const babel = require('gulp-babel');
 const rollup = require('gulp-rollup');
+const plumber = require('gulp-plumber'); // dev环境错误自动重启
 const del = require('delete');
 const replace = require('@rollup/plugin-replace');
 
@@ -35,6 +36,7 @@ function clean(cb) {
 
 function dev() {
     return watch(input, { ignoreInitial: false })
+        .pipe(plumber())
         .pipe(babel(babelrc))
         .pipe(dest(output));
 }

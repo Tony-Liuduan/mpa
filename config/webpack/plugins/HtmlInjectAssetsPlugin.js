@@ -1,8 +1,9 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /**
  * @fileoverview html注入静态资源插件，通过html-webpack-plugin插件将access资源inject到html指定位置
  * @author liuduan
  * @Date 2020-05-10 18:17:51
- * @LastEditTime 2020-05-10 19:03:22
+ * @LastEditTime 2020-05-24 15:49:05
  * @source https://www.npmjs.com/package/html-webpack-plugin
  */
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -23,7 +24,7 @@ class HtmlInjectAssetsPlugin {
                 (data, cb) => {
                     this.assets = data.assets;
                     cb(null, data);
-                }
+                },
             );
             HtmlWebpackPlugin.getHooks(compilation).beforeEmit.tapAsync(
                 pluginName,
@@ -32,6 +33,7 @@ class HtmlInjectAssetsPlugin {
                         js,
                         css,
                     } = this.assets;
+                    // eslint-disable-next-line no-param-reassign
                     data.html = data.html
                         .replace('<!--injectjs-->', () => {
                             let jsString = '';
@@ -50,7 +52,7 @@ class HtmlInjectAssetsPlugin {
                         .replace(/@components/g, '../../../components')
                         .replace(/@layouts/g, '../../layouts');
                     cb(null, data);
-                }
+                },
             );
         });
     }

@@ -1,34 +1,37 @@
+/* eslint-disable import/no-dynamic-require */
 /**
  * @fileoverview webpack config core
  * @author liuduan
  * @Date 2020-05-10 15:56:51
- * @LastEditTime 2020-05-17 00:30:03
+ * @LastEditTime 2020-05-24 15:25:34
  */
 const path = require('path');
 const glob = require('glob');
 
 const argv = require('yargs-parser')(process.argv.slice(2));
-const _mode = argv.mode || 'development';
+
+const mode = argv.mode || 'development';
 const merge = require('webpack-merge');
-const webpackConfig = require(`./config/webpack/webpack.${_mode}.js`);
+
+const webpackConfig = require(`./config/webpack/webpack.${mode}.js`);
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const setTitle = require('node-bash-title');
 const HtmlInjectAssetsPlugin = require('./config/webpack/plugins/HtmlInjectAssetsPlugin.js');
 
-const setTitle = require('node-bash-title');
-setTitle(`client-${_mode}🦏🦏`);
+
+setTitle(`client-${mode}🦏🦏`);
 
 
-
-const _entry = {};
-const _plugins = [];
+const entry = {};
+const plugins = [];
 const entryFiles = glob.sync('./src/web/views/**/*.entry.js');
 for (const filepath of entryFiles) {
     if (/.+\/([a-zA-Z]+)-([a-zA-Z]+)\.entry\.js$/.test(filepath)) {
         // console.log(RegExp.$_, RegExp.$1, RegExp.$2)
         const { $1, $2 } = RegExp;
         const entryKey = `${$1}-${$2}`;
-        _entry[entryKey] = filepath;
-        _plugins.push(new HtmlWebpackPlugin({
+        entry[entryKey] = filepath;
+        plugins.push(new HtmlWebpackPlugin({
             filename: `../views/${$1}/pages/${$2}.html`,
             template: `./src/web/views/${$1}/pages/${$2}.html`,
             chunks: [entryKey],
@@ -43,7 +46,7 @@ for (const filepath of entryFiles) {
 
 
 const baseConfig = {
-    entry: _entry,
+    entry,
     output: {
         path: path.join(__dirname, './dist/web/assets'),
         publicPath: '/',
@@ -58,7 +61,7 @@ const baseConfig = {
                     loader: 'babel-loader',
                 },
             },
-        ]
+        ],
     },
     resolve: {
         alias: {
@@ -69,14 +72,14 @@ const baseConfig = {
         jquery: 'jQuery',
     },
     // todos : babel config
-    watch: _mode === 'development' ? true : false,
+    watch: mode === 'development',
     optimization: {
         runtimeChunk: {
             name: 'runtime',
         },
     },
     plugins: [
-        ..._plugins,
+        ...plugins,
         new HtmlInjectAssetsPlugin(),
     ],
 };

@@ -20,4 +20,4 @@ booksRouter
     .get('/delete/:id', booksController.actionDelete)
     .get('/update/:id', booksController.actionUpdate)
     .post('/update/:id', booksController.actionUpdate)
-    .get('/view/:id', booksController.actionView)
+    .get('/view/:id', booksController.actionView);

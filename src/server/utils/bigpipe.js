@@ -2,7 +2,7 @@
  * @fileoverview bigpipe ssr big html file
  * @author liuduan
  * @Date 2020-05-22 14:17:30
- * @LastEditTime 2020-05-22 15:12:25
+ * @LastEditTime 2020-05-24 15:13:34
  */
 import { Readable } from 'stream';
 
@@ -12,7 +12,7 @@ import { Readable } from 'stream';
  * @param {ctx} ctx
  * @return {string} html
  */
-export function bigpipeResponseHtml(ctx, html) {
+export default function bigpipeResponseHtml(ctx, html) {
     // 注意：这里必须返回promise
     // 如果直接pipe给ctx.res，前端只是显示ok
     // 经测试，使用原生nodejs不需要Promise包装，可以直接pipe
@@ -25,5 +25,5 @@ export function bigpipeResponseHtml(ctx, html) {
         rs.on('error', reject);
         rs.on('end', resolve);
         rs.pipe(ctx.res);
-    })
+    });
 }

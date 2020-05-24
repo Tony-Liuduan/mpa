@@ -33,14 +33,14 @@ log4js.configure({
             filename: './logs/request',
             pattern: 'yyyy-MM-dd.log',
             alwaysIncludePattern: true,
-        }
+        },
     },
     categories: {
         default: { appenders: ['info'], level: 'info' },
         error: { appenders: ['error'], level: 'error' },
         request: { appenders: ['request'], level: 'mark' },
         debug: { appenders: ['debug'], level: 'debug' },
-    }
+    },
 });
 
 
@@ -63,5 +63,5 @@ export {
     logger,
     httpLogger,
     errorLogger,
-    debugLogger
+    debugLogger,
 };

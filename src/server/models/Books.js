@@ -2,7 +2,7 @@
  * @fileoverview 实现Books数据模型
  * @author liuduan
  * @Date 2020-04-25 10:19:04
- * @LastEditTime 2020-05-17 00:47:24
+ * @LastEditTime 2020-05-24 15:44:57
  */
 
 import config from 'config';
@@ -10,8 +10,6 @@ import { httpGet, httpPost } from '../utils/request';
 
 
 const PROXY_SERVER = config.get('proxyServer');
-
-
 
 
 export default class Books {
@@ -29,7 +27,7 @@ export default class Books {
      * @param {Object} filters 查询过滤参数
      * @return {Array}
      */
-    async queryList(filters) {
+    async queryList(/* filters */) {
         const res = await httpGet({
             ...PROXY_SERVER,
             path: '/index.php?r=books%2Findex',
@@ -43,7 +41,7 @@ export default class Books {
      * @param {object} data 查询过滤参数
      * @return {Object}
      */
-    async createItem(data) {
+    async createItem(/* data */) {
         // todos: requset php server
         return Promise.resolve({});
     }
@@ -55,10 +53,11 @@ export default class Books {
      * @return {Object}
      */
     async deleteItem(id) {
-        return await httpPost({
+        const res = await httpPost({
             ...PROXY_SERVER,
             path: `/index.php?r=books%2Fdelete&id=${id}`,
         });
+        return res;
     }
 
 
@@ -67,7 +66,7 @@ export default class Books {
      * @param {String | Number} id 查询id
      * @return {Object}
      */
-    async updateItem(id) {
+    async updateItem(/* id */) {
         // todos: requset php server
         return Promise.resolve({});
     }

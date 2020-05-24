@@ -2,7 +2,7 @@
  * @fileoverview app server entry
  * @author liuduan
  * @Date 2020-05-07 16:11:38
- * @LastEditTime 2020-05-17 02:07:37
+ * @LastEditTime 2020-05-24 15:11:04
  */
 import path from 'path';
 import config from 'config';
@@ -31,10 +31,8 @@ const app = new Koa();
 const PORT = config.get('port');
 
 
-
-
 // 当未捕获的 JavaScript 异常一直冒泡回到事件循环时，会触发 'uncaughtException' 事件
-process.on('uncaughtException', (err, origin) => {
+process.on('uncaughtException', (err) => {
     errorLogger.error(err);
 });
 
@@ -49,7 +47,7 @@ process.on('rejectionHandled', (promise) => {
 
 // http.on error:
 // only triggered when err handler middleware not triggered
-app.on('error', (err, ctx) => {
+app.on('error', (err) => {
     errorLogger.error(err);
 });
 
@@ -58,8 +56,6 @@ app.use(response5xx);
 
 // err-404 handler middleware
 app.use(response404);
-
-
 
 
 app.use(favicon(path.join(process.cwd(), 'favicon.ico')));
@@ -75,17 +71,14 @@ app.context.render = co.wrap(render({
 }));
 
 
-
-
 app.use(responseIndex);
 app.use(bodyParser());
+// eslint-disable-next-line no-restricted-syntax
 for (const route of Object.values(routers)) {
-    app.use(route.routes(), route.allowedMethods())
+    app.use(route.routes(), route.allowedMethods());
 }
-
-
 
 
 app.listen(PORT, () => {
     console.log('🍺服务启动成功', PORT);
-})
+});

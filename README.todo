@@ -1,11 +1,11 @@
-☐ bigpipe，readable pip 到 ctx.res
-☐ jquery-pjax 
-☐ wrk 压测工具 qps测试 https://github.com/wg/wrk
+✔ bigpipe，readable pip 到 ctx.res @done(20-05-23 20:17)
+✔ jquery-pjax @done(20-05-23 20:17)
+✔ wrk 压测工具 qps测试 https://github.com/wg/wrk @done(20-05-23 20:17)
 qps = pv / t = 10万请求 / 10 * 24 * 60 * 60 s
 wrk -t12 -c200 -d60s http://localhost:8001
 12个线程 200个并发请求 60s内 
 test buffer and string
-☐ ab 压测，linux自带 ab
+✔ ab 压测，linux自带 ab @done(20-05-23 20:17)
 压测块景设置： 
 ab -n 800 -c 800  http://192.168.0.10/ 
 （-n发出800个请求，-c模拟800并发，相当800人同时访问，后面是测试url）
@@ -15,4 +15,18 @@ ab -t 60 -c 100 http://192.168.0.10/
    
 //如果需要在url中带参数，这样做 
 ab -t 60 -c 100 -T "text/plain" -p p.txt http://192.168.0.10/hello.html 
-☐ quicklink
+✔ quicklink @done(20-05-23 20:17)
+
+---
+✔ tabnine @done(20-05-24 15:01)
+☐ pjax源码
+☐ 依赖注入，IOC，控制反转：控制反转（Inversion of Control，缩写为IoC），是面向对象编程中的一种设计原则，可以用来减低计算机代码之间的耦合度。其中最常见的方式叫做依赖注入（Dependency Injection，简称DI），还有一种方式叫“依赖查找”（Dependency Lookup）
+    - 手段：DI - 面向切面注入的@方式
+✔ AOP 面向切面编程 @done(20-05-24 15:01)
+☐ 依赖注入工具：https://www.npmjs.com/package/awilix
+☐ https://www.npmjs.com/package/awilix-koa
+☐ eslint + prettier
+☐ eslint --init 
+☐ 自动重启库？？？ 1：50分钟
+☐ type=module type=nomondule
+☐ type=xxx 还会请求src js吗 https://www.cnblogs.com/Grewer/p/9518146.html

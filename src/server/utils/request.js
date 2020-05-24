@@ -3,9 +3,8 @@ import url from 'url';
 import querystring from 'querystring';
 
 
-
-
-function httpGet(options, query) {
+function httpGet(opts, query) {
+    const options = opts;
     if (query) {
         options.path = url.format({
             pathname: options.path,
@@ -19,8 +18,8 @@ function httpGet(options, query) {
 
             let error;
             if (statusCode !== 200) {
-                error = new Error('请求失败\n' +
-                    `状态码: ${statusCode}`);
+                error = new Error('请求失败\n'
+                    + `状态码: ${statusCode}`);
             }
 
             if (error) {
@@ -39,32 +38,30 @@ function httpGet(options, query) {
         }).on('error', (e) => {
             reject(e);
         });
-    })
+    });
 }
 
 
-
-
-function httpPost(options, postData = {}) {
+function httpPost(opts, data = {}) {
     return new Promise((resolve, reject) => {
-        const _postData = querystring.stringify(postData);
+        const postData = querystring.stringify(data);
 
-        const _options = {
+        const options = {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                // 'Content-Length': Buffer.byteLength(_postData)
+                // 'Content-Length': Buffer.byteLength(postData)
             },
-            ...options,
+            ...opts,
         };
 
-        const req = http.request(_options, (res) => {
+        const req = http.request(options, (res) => {
             const { statusCode } = res;
 
             let error;
             if (statusCode !== 200) {
-                error = new Error('请求失败\n' +
-                    `状态码: ${statusCode}`);
+                error = new Error('请求失败\n'
+                    + `状态码: ${statusCode}`);
             }
 
             if (error) {
@@ -92,14 +89,13 @@ function httpPost(options, postData = {}) {
         });
 
         // 将数据写入请求主体。
-        req.write(_postData);
+        req.write(postData);
         req.end();
     });
 }
 
 
-
-module.exports = {
+export {
     httpGet,
     httpPost,
-}
+};

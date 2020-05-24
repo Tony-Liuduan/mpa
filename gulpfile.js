@@ -2,7 +2,7 @@
  * @fileoverview gulp config for nodejs
  * @author liuduan
  * @Date 2020-05-07 16:11:38
- * @LastEditTime 2020-05-17 00:38:36
+ * @LastEditTime 2020-05-24 15:16:02
  * gulp缺点：不能解决文件依赖
  */
 const {
@@ -18,25 +18,19 @@ const del = require('delete');
 const replace = require('@rollup/plugin-replace');
 
 
-
-
 const input = './src/server/**/*.js';
 const output = './dist/server/';
 const treeshakeEntry = './src/server/treeshake.js';
 const babelrc = {
     babelrc: false,
-    plugins: ['@babel/plugin-transform-modules-commonjs']
+    plugins: ['@babel/plugin-transform-modules-commonjs'],
 };
-
-
 
 
 function clean(cb) {
     // 直接使用 `delete` 模块，避免使用 gulp-rimraf 插件
     return del([output], cb);
 }
-
-
 
 
 function dev() {
@@ -46,14 +40,11 @@ function dev() {
 }
 
 
-
-
 function prod() {
     return src(input, { ignore: [treeshakeEntry] })
         .pipe(babel(babelrc))
         .pipe(dest(output));
 }
-
 
 
 /**
@@ -76,8 +67,6 @@ function treeshake() {
         }))
         .pipe(dest(output));
 }
-
-
 
 
 exports.default = series(clean, dev);

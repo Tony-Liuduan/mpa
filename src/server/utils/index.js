@@ -5,15 +5,13 @@
  * @LastEditTime 2020-05-17 00:47:46
  */
 
- 
-
 
 /**
 * @class ApiRespnse api接口响应体类
 */
 class ApiRespnse {
     /**
-     * @constructor 
+     * @constructor
      * @param {number} code 0-成功
      * @param {string} msg
      * @param {object|array|null|undefined} data
@@ -24,8 +22,6 @@ class ApiRespnse {
         this.data = data || null;
     }
 }
-
-
 
 
 /**
@@ -39,7 +35,6 @@ function isHtmlRequset(ctx) {
 }
 
 
-
 /**
  * @description isApiRequset 判断是否是api请求
  * @param {type} ctx koa执行上下文
@@ -51,11 +46,8 @@ function isApiRequset(ctx) {
 }
 
 
-
-
-
 export {
     ApiRespnse,
     isHtmlRequset,
     isApiRequset,
-}
+};

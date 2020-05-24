@@ -2,7 +2,7 @@
  * @fileoverview webpack config core
  * @author liuduan
  * @Date 2020-05-10 15:56:51
- * @LastEditTime 2020-05-24 16:06:11
+ * @LastEditTime 2020-05-24 17:18:44
  */
 /* eslint-disable import/no-dynamic-require */
 const path = require('path');
@@ -55,6 +55,20 @@ const baseConfig = {
     module: {
         rules: [
             {
+                test: /\.(js|jsx|ts|tsx)$/,
+                enforce: 'pre',
+                include: path.join(__dirname, './src/web'),
+                exclude: /(node_modules|bower_components)/,
+                use: {
+                    loader: 'eslint-loader',
+                    options: {
+                        fix: true,
+                        cache: mode === 'development',
+                        failOnError: mode !== 'development',
+                    },
+                },
+            },
+            {
                 test: /\.jsx?$/,
                 exclude: /(node_modules|bower_components)/,
                 use: {
@@ -71,7 +85,6 @@ const baseConfig = {
     externals: {
         jquery: 'jQuery',
     },
-    // todos : babel config
     watch: mode === 'development',
     optimization: {
         runtimeChunk: {

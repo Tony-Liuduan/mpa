@@ -38,6 +38,7 @@
     "delete": "^1.1.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-loader": "^4.0.2",
     "eslint-plugin-import": "^2.20.2",
     "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",

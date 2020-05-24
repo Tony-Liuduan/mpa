@@ -2,7 +2,7 @@
  * @fileoverview gulp config for nodejs
  * @author liuduan
  * @Date 2020-05-07 16:11:38
- * @LastEditTime 2020-05-24 16:10:04
+ * @LastEditTime 2020-05-24 16:38:10
  * gulp缺点：不能解决文件依赖
  */
 const {
@@ -24,7 +24,10 @@ const output = './dist/server/';
 const treeshakeEntry = './src/server/treeshake.js';
 const babelrc = {
     babelrc: false,
-    plugins: ['@babel/plugin-transform-modules-commonjs'],
+    plugins: [
+        '@babel/plugin-transform-modules-commonjs',
+        ['@babel/plugin-proposal-decorators', { legacy: true }],
+    ],
 };
 
 

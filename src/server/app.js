@@ -2,7 +2,7 @@
  * @fileoverview app server entry
  * @author liuduan
  * @Date 2020-05-07 16:11:38
- * @LastEditTime 2020-05-24 18:52:13
+ * @LastEditTime 2020-05-24 19:00:22
  */
 import path from 'path';
 import config from 'config';
@@ -80,9 +80,6 @@ app.context.render = co.wrap(render({
 
 app.use(responseIndex);
 app.use(bodyParser());
-// for (const route of Object.values(routers)) {
-//     app.use(route.routes(), route.allowedMethods());
-// }
 /* --------------- IOC 实现 routers config by https://www.npmjs.com/package/awilix-koa ----------------- */
 const container = createContainer();
 // The `TodosService` lives in services/TodosService

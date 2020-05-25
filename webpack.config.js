@@ -2,7 +2,7 @@
  * @fileoverview webpack config core
  * @author liuduan
  * @Date 2020-05-10 15:56:51
- * @LastEditTime 2020-05-24 17:18:44
+ * @LastEditTime 2020-05-25 23:13:58
  */
 /* eslint-disable import/no-dynamic-require */
 const path = require('path');
@@ -74,6 +74,24 @@ const baseConfig = {
                 use: {
                     loader: 'babel-loader',
                 },
+            },
+            {
+                test: /\.css$/i,
+                use: [
+                    {
+                        loader: 'style-loader',
+                    },
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            // modules: true,
+                            importLoaders: 1,
+                        },
+                    },
+                    {
+                        loader: 'postcss-loader',
+                    },
+                ],
             },
         ],
     },

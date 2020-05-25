@@ -1,7 +1,5 @@
-.components-banner a {
-    color: rebeccapurple;
-}
+.components-banner a
+    color: red
 
-.components-banner li {
-    list-style-type: none;
-}
+.components-banner li
+    list-style-type: none

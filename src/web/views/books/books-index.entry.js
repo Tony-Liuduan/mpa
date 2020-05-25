@@ -1,11 +1,5 @@
-/**
- * @fileoverview
- * @author liuduan
- * @Date 2020-05-10 17:34:05
- * @LastEditTime 2020-05-24 21:53:04
- */
-// import App from '@/components/lib/app.js';
+import modules from '@/components/ioc/module.js';
 
 
-// const banner = App.use('banner');
-// banner.test();
+const banner = modules.use('banner');
+banner.test();

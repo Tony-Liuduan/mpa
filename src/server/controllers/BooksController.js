@@ -2,7 +2,7 @@
  * @fileoverview 实现BooksController
  * @author liuduan
  * @Date 2020-04-19 22:24:47
- * @LastEditTime 2020-06-13 10:21:49
+ * @LastEditTime 2020-06-13 11:08:37
  */
 import cheerio from 'cheerio';
 import {
@@ -52,8 +52,6 @@ class BooksController {
         ctx.status = 200;
         ctx.type = 'html';
         $('.server-lazyload-css').each(function writeCss() {
-            // <link rel="stylesheet" href="/style/index-index.css">
-            console.log($(this).attr('href'));
             ctx.res.write(`<link rel="stylesheet" href="${$(this).attr('href')}"></link>`);
         });
         $('.server-pjaxcontent').each(function writeHtml() {

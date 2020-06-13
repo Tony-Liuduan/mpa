@@ -2,7 +2,7 @@
  * @fileoverview html注入静态资源插件，通过html-webpack-plugin插件将access资源inject到html指定位置
  * @author liuduan
  * @Date 2020-05-10 18:17:51
- * @LastEditTime 2020-05-24 16:06:26
+ * @LastEditTime 2020-06-13 10:16:08
  * @source https://www.npmjs.com/package/html-webpack-plugin
  */
 /* eslint-disable import/no-extraneous-dependencies */
@@ -38,14 +38,15 @@ class HtmlInjectAssetsPlugin {
                         .replace('<!--injectjs-->', () => {
                             let jsString = '';
                             for (const path of js) {
-                                jsString += `<script src="${path}"></script>`;
+                                console.log(path);
+                                jsString += `<script class="server-lazyload-js" src="${path}"></script>`;
                             }
                             return jsString;
                         })
                         .replace('<!--injectcss-->', () => {
                             let cssString = '';
                             for (const path of css) {
-                                cssString += `<link rel="stylesheet" href="${path}">`;
+                                cssString += `<link class="server-lazyload-css" rel="stylesheet" href="${path}">`;
                             }
                             return cssString;
                         })

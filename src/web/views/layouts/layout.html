@@ -17,6 +17,10 @@
     <script src="https://cdn.bootcdn.net/ajax/libs/quicklink/2.0.0/quicklink.umd.js"></script>
     <script>
         $(document).pjax('a', '#root');
+        $(document).on('pjax:beforeReplace', function (...args) {
+            // 删除link标签
+            args[1].splice(0, 1);
+        });
         quicklink.listen();
     </script>
     {% block scripts %}{% endblock %}

@@ -44,8 +44,18 @@ ab -t 60 -c 100 -T "text/plain" -p p.txt http://192.168.0.10/hello.html
 
 ☐ css 
     ☐ 诟病：样式重复 无用样式 多余的css important
-☐ postCss
+✔ postCss @done(20-05-29 20:15)
 ☐ nextcss
-☐ BEM https://juejin.im/post/5b925e616fb9a05cdd2ce70d
-☐ ACSS 
-☐ css-doodle
+✔ BEM https://juejin.im/post/5b925e616fb9a05cdd2ce70d @done(20-05-29 20:15)
+✔ ACSS @done(20-05-29 20:15)
+☐ css-doodle 炫酷css
+☐ purify-css css tree sharking
+☐ prerender ??? spa 过滤css
+☐ 原子css自动化提取 
+    ☐ style-components ?? 
+    ☐ styletron-loader acss
+    ☐ daeds-atomic acss规范命名 
+☐ cssnano
+☐ typed-css-modules-loader
+☐ CSS.paintWorklet.addModule rejister ???
+☐ 满天星

@@ -2,8 +2,8 @@
  * @fileoverview node内存回收
  * @author liuduan
  * @Date 2020-05-24 20:40:35
- * @LastEditTime 2020-05-24 20:56:42
- * @文件执行命令：node --expose-gc demo01.js
+ * @LastEditTime 2020-06-08 00:18:05
+ * @文件执行命令：node --expose-gc node-gc.js
  */
 global.gc();
 console.log('最初的内存占用---', process.memoryUsage());
@@ -49,9 +49,25 @@ console.log('最初的内存占用---', process.memoryUsage());
 
 
 
-let map = new WeakMap();
-let key = new Array(5 * 1024 * 1024);
-map.set(key, 1);
-key = null;  // weekmap, 可有效回收内存
+// let map = new WeakMap();
+// let key = new Array(5 * 1024 * 1024);
+// map.set(key, 1);
+// key = null;  // weekmap, 可有效回收内存
+// global.gc(); // 手动gc
+// console.log('使用weekmap---', process.memoryUsage());
+
+let len = 50000000;
+let list = new Array(len).fill(undefined);
+let arr = list.map(() => {
+    return Math.floor(Math.random() * len);
+});
+list = null;
 global.gc(); // 手动gc
-console.log('使用weekmap---', process.memoryUsage());
+arr.sort((a, b) => a - b);
+console.log(arr[len * 0.50])
+console.log(arr[len * 0.75])
+console.log(arr[len * 0.90])
+len = null;
+arr = null;
+global.gc(); // 手动gc
+console.log('最初的内存占用---', process.memoryUsage());

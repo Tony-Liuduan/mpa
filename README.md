@@ -65,3 +65,22 @@ v8, wrk/JMeter，开发机测试
 4. log4js不能来了就写，会造成内存泄露，消息队列
 5. 闭包
 6. WeakMap
+
+
+## css-BEM
+
+```txt
+
+component-name 
+component-name--modifier-name 
+component-name__sub-object 
+component-name__sub-object--modifier-nam
+
+p-页面（Page） （应用于body元素的类）,对可维护性不是那么重要的静态页面十分有用 —应该避免嵌套使用 (例: p-Homepage);
+l-布局（Layout）, 比如列（columning），包裹（wrappers） 和容器（containers）等等(例: l-Masthead, l-Footer);
+c-组件（components ）(例: c-Dropdown, c-Button…);
+u-公共类（Utility classes） — 不会发生改变, 在代码的任何地方都不能重载。(例: u-textCenter, u-clearfix…);
+js-JavaScript钩子：永远不应该出现在CSS中。
+g-JavaScript钩子：全局js类，永远不应该出现在CSS中
+
+```

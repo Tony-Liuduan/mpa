@@ -2,10 +2,10 @@
  * @fileoverview
  * @author liuduan
  * @Date 2020-05-10 17:19:29
- * @LastEditTime 2020-05-25 23:27:44
+ * @LastEditTime 2020-05-30 12:59:42
  */
 import $ from 'jquery';
-import './banner.css';
+import './heart.css';
 
 
 class Banner {

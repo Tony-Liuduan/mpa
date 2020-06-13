@@ -2,7 +2,7 @@
  * @fileoverview webpack config core
  * @author liuduan
  * @Date 2020-05-10 15:56:51
- * @LastEditTime 2020-05-25 23:13:58
+ * @LastEditTime 2020-05-30 12:35:36
  */
 /* eslint-disable import/no-dynamic-require */
 const path = require('path');
@@ -16,6 +16,7 @@ const merge = require('webpack-merge');
 const webpackConfig = require(`./config/webpack/webpack.${mode}.js`);
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const setTitle = require('node-bash-title');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlInjectAssetsPlugin = require('./config/webpack/plugins/HtmlInjectAssetsPlugin.js');
 
 
@@ -78,8 +79,14 @@ const baseConfig = {
             {
                 test: /\.css$/i,
                 use: [
+                    // {
+                    //     loader: 'style-loader',
+                    // },
                     {
-                        loader: 'style-loader',
+                        loader: MiniCssExtractPlugin.loader,
+                        // options: {
+                        //     esModule: true,
+                        // },
                     },
                     {
                         loader: 'css-loader',
@@ -111,6 +118,13 @@ const baseConfig = {
     },
     plugins: [
         ...plugins,
+        // 从js中分离css文件，变为link引用
+        new MiniCssExtractPlugin({
+            // Options similar to the same options in webpackOptions.output
+            // both options are optional
+            filename: 'style/[name].css',
+            chunkFilename: 'style/[id].css',
+        }),
         new HtmlInjectAssetsPlugin(),
     ],
 };

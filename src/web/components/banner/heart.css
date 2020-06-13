@@ -27,7 +27,8 @@ optgroup,
 select,
 textarea {
   font: inherit;
-  margin: 0;
+  margin: 10px;
+  display: flex;
 }
 
 .love-icon {
@@ -44,7 +45,7 @@ textarea {
   opacity: 0;
 }
 
-input[type='checkbox' i] {
+input[type='checkbox'] {
   background-color: initial;
   cursor: default;
   -webkit-appearance: checkbox;

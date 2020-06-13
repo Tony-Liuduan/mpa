@@ -2,7 +2,7 @@
  * @fileoverview postcss config
  * @author liuduan
  * @Date 2020-05-25 21:28:17
- * @LastEditTime 2020-05-30 12:47:12
+ * @LastEditTime 2020-06-13 14:34:34
  */
 /* eslint-disable quote-props */
 
@@ -19,6 +19,9 @@ module.exports = {
             },
         },
         // 'cssnano': {},
-        // 'autoprefixer': {},
+        'autoprefixer': { // TODO: 没用？？？
+            // cascade: false,
+            // flexbox: true,
+        },
     },
 };

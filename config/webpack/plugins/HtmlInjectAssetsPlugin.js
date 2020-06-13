@@ -2,7 +2,7 @@
  * @fileoverview html注入静态资源插件，通过html-webpack-plugin插件将access资源inject到html指定位置
  * @author liuduan
  * @Date 2020-05-10 18:17:51
- * @LastEditTime 2020-06-13 10:16:08
+ * @LastEditTime 2020-06-13 17:37:10
  * @source https://www.npmjs.com/package/html-webpack-plugin
  */
 /* eslint-disable import/no-extraneous-dependencies */

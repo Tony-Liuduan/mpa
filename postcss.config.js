@@ -2,7 +2,7 @@
  * @fileoverview postcss config
  * @author liuduan
  * @Date 2020-05-25 21:28:17
- * @LastEditTime 2020-06-13 14:34:34
+ * @LastEditTime 2020-06-14 14:36:28
  */
 /* eslint-disable quote-props */
 
@@ -18,10 +18,14 @@ module.exports = {
                 'nesting-rules': true,
             },
         },
-        // 'cssnano': {},
-        'autoprefixer': { // TODO: 没用？？？
-            // cascade: false,
-            // flexbox: true,
+        'cssnano': {},
+        'autoprefixer': {
+            overrideBrowserslist: [
+                '>1%',
+                'last 0 versions',
+                'Firefox ESR',
+                'not ie < 9', // React doesn't support IE8 anyway
+            ],
         },
     },
 };
